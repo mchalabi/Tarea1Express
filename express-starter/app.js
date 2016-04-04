@@ -4,29 +4,20 @@ const morgan = require('morgan')
 const app = express()
 app.use(morgan('tiny'))
 
-var array = ['Banana'];
+const array = [];
 app.get('/', (req, res) => {
   // Send JSON
-  res.send({ array})
+  res.send({ array })
 })
 
-app.get('/post', (req,res) => {
-  const a= 0;
-  var word = req.query.a;
-  array.push(word);
+app.post('/items', (req,res) => {
+//  const item = req.body.item;
+  array.push(req.query.a);
+  res.send(req.query.a);
 })
 
 
 
-/*app.get()
-app.get('/add', (req, res) => {
-  // TODO: We need to get 'a' and 'b' from 'req.query' object
-  const a = 0 // ?
-  const b = 0 // ?
-  res.send({
-    operation: `${a} + ${b}`,
-    result: a + b,
-  })
-})*/
+
 
 module.exports = app
